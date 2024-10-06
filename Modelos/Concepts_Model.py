@@ -17,7 +17,7 @@ def scrape_definition(word):
     # Parseamos el contenido HTML con BeautifulSoup
     soup = BeautifulSoup(response.text, 'html.parser')
     
-    # Buscamos la sección de definiciones. En Merriam-Webster, las definiciones están en un div con clase 'vg'
+    # Buscamos la sección de definiciones. En Merriam-Webster, las definiciones están en un span con clase 'dtText'
     definitions_section = soup.find_all('span', {'class': 'dtText'})
     
     # Si no encontramos definiciones, devolvemos un mensaje de error
@@ -30,29 +30,28 @@ def scrape_definition(word):
     
     return definitions
 
-# Función para manejar la entrada del usuario y obtener definiciones para múltiples palabras
+# Función para leer la palabra desde un archivo de texto
+def read_word_from_file(file_path):
+    with open(file_path, 'r', encoding='utf-8') as file:
+        # Leer el contenido del archivo (asumimos que hay solo una palabra en el archivo)
+        word = file.read().strip()
+    return word
+
+# Función principal que obtiene la palabra desde el archivo y luego busca su definición
 def main():
-    while True:
-        # Solicitar una o más palabras separadas por comas
-        user_input = input("Introduce una palabra o varias (separadas por comas), o 'salir' para terminar: ").strip()
-        
-        if user_input.lower() == 'salir':
-            print("Programa terminado.")
-            break
-        
-        # Separar palabras si hay más de una
-        words = [word.strip() for word in user_input.split(',')]
-        
-        for word in words:
-            # Llamamos a la función de scraping para cada palabra
-            definitions = scrape_definition(word)
-            
-            if definitions:
-                print(f"\nDefiniciones para '{word}':")
-                for i, definition in enumerate(definitions, 1):
-                    print(f"{i}. {definition}")
-            else:
-                print(f"No se encontró la definición para '{word}'.")
+    # Ruta del archivo de texto
+    file_path = r'C:\Users\playc\Desktop\IA\Data\Texto\textoTrad.txt'
+    
+    # Leer la palabra desde el archivo
+    word = read_word_from_file(file_path)
+    
+    # Llamamos a la función de scraping para la palabra leída
+    definitions = scrape_definition(word)
+    
+    if definitions:
+        print(f"\nDefiniciones para '{word}':")
+        for i, definition in enumerate(definitions, 1):
+            print(f"{i}. {definition}")
 
 # Ejecutar el programa principal
 if __name__ == "__main__":
