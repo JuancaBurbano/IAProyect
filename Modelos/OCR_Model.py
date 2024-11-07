@@ -42,7 +42,7 @@ def text(image_path):
         f.write(texto)
 
 # Llamar la función
-image_path = "Data/Capturas/Img.jpg"
+image_path = r"C:\Users\USUARIO\Desktop\IA Proyecto\IAProyect\Data\Capturas\Img.jpg"
 text(image_path)
    
 

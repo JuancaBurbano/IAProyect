@@ -26,7 +26,7 @@ def translate_text(text_path):
         print(f"Traducción de la frase:\n{translated_text}")
 
 # Ruta del archivo de texto
-text_path = r'C:\Users\playc\Desktop\IA\Data\Texto\texto.txt'
+text_path = r"C:\Users\USUARIO\Desktop\IA Proyecto\IAProyect\Data\Texto\texto.txt"
 
 # Llamar a la función de traducción
 translate_text(text_path)
