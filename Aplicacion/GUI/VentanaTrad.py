@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import filedialog, messagebox
 from googletrans import Translator
 import os
+import subprocess
 
 # Función para traducir texto, adaptada al entorno de tkinter
 def translate_text(text_path):
@@ -41,10 +42,22 @@ def select_file():
     if text_path:
         translate_text(text_path)
 
+# Función para ejecutar el archivo conceptos.py
+def run_conceptos_script():
+    # Definir la ruta exacta del archivo conceptos.py
+    script_path = r"C:\Users\USUARIO\Desktop\IA Proyecto\IAProyect\Aplicacion\BACKEND\conceptos.py"
+    
+    try:
+        # Ejecutar el archivo conceptos.py
+        subprocess.Popen(["python", script_path])
+        messagebox.showinfo("Ejecución", "El archivo conceptos.py se está ejecutando.")
+    except Exception as e:
+        messagebox.showerror("Error", f"No se pudo ejecutar el archivo conceptos.py: {e}")
+
 # Configuración de la ventana principal
 root = tk.Tk()
 root.title("Traductor de Texto")
-root.geometry("600x400")
+root.geometry("600x500")
 root.configure(bg="#f5f5f5")
 
 # Estilos para la interfaz
@@ -67,6 +80,12 @@ result_label.pack(anchor="w")
 result_text = tk.Text(result_frame, height=10, width=60, wrap=tk.WORD, font=("Helvetica", 10), 
                       state=tk.DISABLED, bg="#e0e0e0", fg="#333", relief="sunken", bd=1)
 result_text.pack(pady=10)
+
+# Botón para ejecutar conceptos.py
+run_script_button = tk.Button(root, text="ir a conceptos", command=run_conceptos_script, 
+                              font=("Helvetica", 12), bg="#FF5722", fg="white", activebackground="#E64A19", 
+                              relief="flat", padx=10, pady=5)
+run_script_button.pack(pady=20)
 
 # Ejecutar la aplicación
 root.mainloop()
