@@ -68,6 +68,7 @@ def main():
             messagebox.showwarning("Sin imagen", "Por favor, selecciona una imagen primero.")
 
 
+
     export_button = tk.Button(button_frame, text="IMPORTAR IMAGEN", font=("Impact", 16), bg="#4CAF50", fg="white", height=2, width=20, command=select_file)
     export_button.pack(side="left", padx=10)
 
