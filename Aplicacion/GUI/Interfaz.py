@@ -43,24 +43,6 @@ def main():
 
     txt = tk.StringVar()
 
-    def show_text_box():
-        if not hasattr(root, "text_box"):
-            root.text_box = tk.Text(root, height=5, width=60)
-            root.text_box.pack(pady=10)
-        
-        def save_text():
-            txt_content = root.text_box.get("1.0", "end-1c")
-            txt.set(txt_content)
-            output_folder = "../IA/Data/Texto"
-            os.makedirs(output_folder, exist_ok=True)
-            file_path = os.path.join(output_folder, "texto_guardado.txt")
-            with open(file_path, "w") as file:
-                file.write(txt_content)
-            print(f"Texto guardado en: {file_path}")
-
-        save_button = tk.Button(root, text="Guardar Texto", command=save_text, bg="#4CAF50", fg="white")
-        save_button.pack(pady=5)
-
     img_path = tk.StringVar()
 
     def select_file():
@@ -85,8 +67,6 @@ def main():
         else:
             messagebox.showwarning("Sin imagen", "Por favor, selecciona una imagen primero.")
 
-    write_button = tk.Button(button_frame, text="ESCRIBIR TEXTO", font=("Impact", 16), bg="#4CAF50", fg="white", height=2, width=20, command=show_text_box)
-    write_button.pack(side="left", padx=10)
 
     export_button = tk.Button(button_frame, text="IMPORTAR IMAGEN", font=("Impact", 16), bg="#4CAF50", fg="white", height=2, width=20, command=select_file)
     export_button.pack(side="left", padx=10)

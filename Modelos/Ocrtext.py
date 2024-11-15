@@ -1,10 +1,10 @@
-import cv2  
-import pytesseract as tess  
-from PIL import Image  
-import os  
+import cv2
+import pytesseract as tess
+import os
 
 def text(image_path):
     tess.pytesseract.tesseract_cmd = r'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
+    
     # Lee la imagen desde la ruta especificada
     image = cv2.imread(image_path)
     
@@ -28,5 +28,7 @@ def text(image_path):
     # Retorna el texto extraído
     return texto
 
-
-
+# Ruta de la imagen para probar
+image_path = '../IA/Data/Capturas/imagen_guardada.jpg'
+resultado = text(image_path)
+print("Texto extraído:", resultado)
