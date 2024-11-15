@@ -53,6 +53,11 @@ def abrir_nueva_ventana(root):
     text_box_1 = tk.Text(right_frame, height=10, width=30, font=("Arial", 12))
     text_box_1.pack(pady=5)
 
+    # Función para abrir la ventana "VentanaTrad"
+    def abrir_ventana_trad():
+        from VentanaTrad import ventana_trad  # Asegúrate de tener este archivo en el proyecto
+        ventana_trad(new_window)  # Abre la nueva ventana
+
     # Función para llamar al OCR, mostrar el texto y guardarlo en un archivo
     def mostrar_texto():
         # Ruta de la imagen guardada
@@ -73,9 +78,15 @@ def abrir_nueva_ventana(root):
 
             messagebox.showinfo("Éxito", f"Texto extraído guardado en: {output_file}")
 
+            # Habilitar el botón "Siguiente"
+            siguiente_button.config(state="normal")
         else:
             messagebox.showwarning("Imagen no encontrada", "Por favor, guarda una imagen antes de intentar extraer texto.")
 
     # Botón para mostrar el texto extraído
     mostrar_texto_button = tk.Button(right_frame, text="Mostrar Texto", font=("Impact", 16), bg="#4CAF50", fg="white", command=mostrar_texto)
-    mostrar_texto_button.pack(pady=10)
+    mostrar_texto_button.pack(pady=(10, 5))  # Espaciado superior e inferior para separar ligeramente
+
+    # Botón "Siguiente" deshabilitado inicialmente, debajo de "Mostrar Texto"
+    siguiente_button = tk.Button(right_frame, text="Siguiente", font=("Impact", 16), bg="#4CAF50", fg="white", state="disabled", command=abrir_ventana_trad)
+    siguiente_button.pack(pady=(5, 10))  # Espaciado para alinearse estéticamente
